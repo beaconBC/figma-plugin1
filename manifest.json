@@ -1,0 +1,13 @@
+{
+  "name": "Fima My Custom Plugin",
+  "id": "react-figma-custom-plugin-1228",
+  "api": "1.0.0",
+  "editorType": ["figma", "figjam"],
+  "permissions": [],
+  "main": "dist/code.js",
+  "ui": "dist/index.html",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  },
+  "documentAccess": "dynamic-page"
+}
