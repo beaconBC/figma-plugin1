@@ -11,7 +11,7 @@ export function SummaryArea() {
     state: { title, summary, description },
     setState,
   } = useContext(SummaryContext);
-
+  const date = new Date();
   return (
     <>
       <div className="bg-black text-white p-6">
@@ -32,7 +32,7 @@ export function SummaryArea() {
             />
           </div>
         )}
-        <div className="mt-2">24.11.28</div>
+        <div className="mt-2">{`${date.getFullYear() % 100}.${date.getMonth() + 1}.${date.getDate()}`}</div>
         {summary.isUse && (
           <>
             <div className="border-t-[1px] border-white my-5" />

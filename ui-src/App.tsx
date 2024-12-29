@@ -43,7 +43,9 @@ function App() {
               <Summary.SummaryOptions />
               <Summary.SummaryButton />
             </div>
-            <Summary.SummaryArea />
+            <div className="mt-3">
+              <Summary.SummaryArea />
+            </div>
           </Summary>
         )}
       </div>
