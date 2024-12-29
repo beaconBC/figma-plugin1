@@ -1,13 +1,15 @@
 import { SummaryRequestData } from "../ui-src/Summary/Summary.type";
 
 const SUMMARY_BOX_WIDTH = 440;
-const SUMMARY_BOX_HEIGHT = 226;
+const SUMMARY_BOX_HEIGHT = 126;
 
 function rgb(r: number, g: number, b: number) {
   return { r: r / 255, g: g / 255, b: b / 255 };
 }
 
 export async function createSummary(summaryData: SummaryRequestData) {
+  const nodes: SceneNode[] = [];
+
   const box = createBox();
 
   await figma.loadFontAsync({ family: "Inter", style: "Bold" });
@@ -15,76 +17,78 @@ export async function createSummary(summaryData: SummaryRequestData) {
   const startX = box.x + 24;
   let startY = box.y + 24;
 
-  const title = createTitle({
-    titleText: summaryData.title,
-    x: startX,
-    y: startY,
-  });
+  if (summaryData.title) {
+    const title = createTitle({
+      titleText: summaryData.title,
+      x: startX,
+      y: startY,
+    });
+    startY = title.y + title.height + 8;
+    nodes.push(title);
+  }
 
-  startY = title.y + title.height + 8;
   const date = createDate({
     x: startX,
     y: startY,
   });
-
   startY = date.y + 47;
-  const divider1 = createDivider({
-    x: startX,
-    y: startY,
-  });
+  nodes.push(date);
 
-  startY = divider1.y + 25;
-  const summary = createSummaryTitle({
-    x: startX,
-    y: startY,
-    text: "Summary",
-  });
+  if (summaryData.summary) {
+    const divider1 = createDivider({
+      x: startX,
+      y: startY,
+    });
+    startY = divider1.y + 25;
+    nodes.push(divider1);
 
-  startY = summary.y + 25;
-  const summaryText = createSummaryText({
-    text: summaryData.summary,
-    x: startX,
-    y: startY,
-  });
+    const summary = createSummaryTitle({
+      x: startX,
+      y: startY,
+      text: "Summary",
+    });
+    startY = summary.y + 25;
+    nodes.push(summary);
 
-  startY = summaryText.y + 47;
-  const divider2 = createDivider({
-    x: startX,
-    y: startY,
-  });
+    const summaryText = createSummaryText({
+      text: summaryData.summary,
+      x: startX,
+      y: startY,
+    });
+    startY = summaryText.y + 47;
+    nodes.push(summaryText);
+  }
+  if (summaryData.description) {
+    const divider2 = createDivider({
+      x: startX,
+      y: startY,
+    });
+    startY = divider2.y + 25;
+    nodes.push(divider2);
 
-  startY = divider2.y + 25;
-  const description = createSummaryTitle({
-    x: startX,
-    y: startY,
-    text: "Description",
-  });
+    const description = createSummaryTitle({
+      x: startX,
+      y: startY,
+      text: "Description",
+    });
+    startY = description.y + 25;
+    nodes.push(description);
 
-  startY = description.y + 25;
-  const descriptionText = createSummaryText({
-    text: summaryData.description,
-    x: startX,
-    y: startY,
-  });
-
-  const nodes = [
-    box,
-    title,
-    date,
-    divider1,
-    summary,
-    summaryText,
-    divider2,
-    description,
-    descriptionText,
-  ];
+    const descriptionText = createSummaryText({
+      text: summaryData.description,
+      x: startX,
+      y: startY,
+    });
+    startY = descriptionText.y + descriptionText.height + 24;
+    nodes.push(descriptionText);
+  }
 
   nodes.forEach((node) => {
     figma.currentPage.appendChild(node);
   });
 
   // Adjust container height dynamically
-  const textBottomEdge = descriptionText.y + descriptionText.height + 24; // Add padding
+  const textBottomEdge = startY; // Add padding
   const newBoxHeight = Math.max(SUMMARY_BOX_HEIGHT, textBottomEdge - box.y);
 
   box.resize(SUMMARY_BOX_WIDTH, newBoxHeight);

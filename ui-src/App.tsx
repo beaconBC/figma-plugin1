@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Summary } from "./Summary/Summary";
 
 enum HangoverType {
-  NotePad = "NotePad",
+  Summary = "Summary",
 }
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
   };
 
-  const [selectValue, setSelectValue] = useState(HangoverType.NotePad);
+  const [selectValue, setSelectValue] = useState(HangoverType.Summary);
 
   return (
     <main className="p-3">
@@ -32,18 +32,20 @@ function App() {
             id="pet-select"
             onChange={(e) => setSelectValue(e.target.value as HangoverType)}
           >
-            <option value={HangoverType.NotePad}>NotePad</option>
+            <option value={HangoverType.Summary}>{HangoverType.Summary}</option>
           </select>
         </div>
       </header>
       <div className="mt-5">
-        <Summary>
-          <div className="flex justify-between">
-            <Summary.SummaryOptions />
-            <Summary.SummaryButton />
-          </div>
-          <Summary.SummaryArea />
-        </Summary>
+        {selectValue === HangoverType.Summary && (
+          <Summary>
+            <div className="flex justify-between">
+              <Summary.SummaryOptions />
+              <Summary.SummaryButton />
+            </div>
+            <Summary.SummaryArea />
+          </Summary>
+        )}
       </div>
     </main>
   );
