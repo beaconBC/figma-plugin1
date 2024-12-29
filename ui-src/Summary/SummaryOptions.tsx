@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { SummaryContext } from "./Summary";
 import { SummaryData } from "./Summary.type";
 
@@ -9,7 +9,7 @@ const OptionsText = {
   description: "Description",
 };
 
-export function SummaryOptions() {
+export default function SummaryOptions() {
   const { state, setState } = useContext(SummaryContext);
   const keys = Object.keys(state) as (keyof SummaryData)[];
   return (

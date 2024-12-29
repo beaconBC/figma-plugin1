@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
 import { initSummaryData, SummaryData } from "./Summary.type";
 import { SummaryArea } from "./SummaryArea";
-import { SummaryOptions } from "./SummaryOptions";
-import { SummaryButton } from "./SummaryButton";
+import SummaryButton from "./SummaryButton";
+import SummaryOptions from "./SummaryOptions";
 
 interface SummaryContextProps {
   state: SummaryData;
