@@ -11,6 +11,7 @@ export async function createSummary(summaryData: SummaryRequestData) {
   const nodes: SceneNode[] = [];
 
   const box = createBox();
+  nodes.push(box);
 
   await figma.loadFontAsync({ family: "Inter", style: "Bold" });
 
@@ -58,6 +59,7 @@ export async function createSummary(summaryData: SummaryRequestData) {
     startY = summaryText.y + 47;
     nodes.push(summaryText);
   }
+
   if (summaryData.description) {
     const divider2 = createDivider({
       x: startX,
@@ -100,7 +102,13 @@ export async function createSummary(summaryData: SummaryRequestData) {
 }
 
 function createBox() {
+  const viewportCenter = figma.viewport.center;
+
   const box = figma.createRectangle();
+
+  box.x = viewportCenter.x - SUMMARY_BOX_WIDTH / 2;
+  box.y = viewportCenter.y - SUMMARY_BOX_HEIGHT / 2;
+
   box.resize(SUMMARY_BOX_WIDTH, SUMMARY_BOX_HEIGHT);
   box.fills = [{ type: "SOLID", color: rgb(0, 0, 0) }];
   return box;
