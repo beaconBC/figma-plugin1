@@ -28,7 +28,7 @@ export default function SummaryButton({ className }: SummaryButtonProps) {
     <div className="flex items-center justify-center">
       <button
         type="button"
-        className="outline p-3 rounded-md hover:bg-slate-100"
+        className="outline outline-1 outline-slate-400 p-3 rounded-md hover:bg-slate-100"
         onClick={clickHandler}
       >
         Create Summary

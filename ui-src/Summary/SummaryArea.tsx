@@ -51,8 +51,11 @@ interface DateAreaProps {
 }
 
 const DateArea = ({ date = new Date() }: DateAreaProps) => {
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
   return (
-    <div className="mt-2">{`${date.getFullYear() % 100}.${date.getMonth() + 1}.${date.getDate()}`}</div>
+    <div className="mt-2">{`${date.getFullYear() % 100}.${month}.${day}`}</div>
   );
 };
 

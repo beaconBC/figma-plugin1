@@ -1,7 +1,8 @@
 import { createSummary } from "./createSummary";
 import createRectangles from "./createRectangles";
+import { createAnnotation } from "./createAnnotation";
 
-figma.showUI(__html__, { themeColors: true, width: 320, height: 700 });
+figma.showUI(__html__, { themeColors: true, width: 320, height: 500 });
 
 figma.ui.onmessage = (msg) => {
   switch (msg.type) {
@@ -13,6 +14,9 @@ figma.ui.onmessage = (msg) => {
       break;
     case "cancel":
       figma.closePlugin();
+      break;
+    case "create-annotation":
+      createAnnotation(msg.annotationData);
       break;
   }
 };
