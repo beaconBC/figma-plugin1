@@ -6,6 +6,15 @@ import { AnnotationType } from "./Annotation.type";
 export function AnnotationArea() {
   const { state, setState, reset } = useContext(AnnotationContext);
 
+  const clickHandler = () => {
+    const annotationData = state;
+    parent.postMessage(
+      { pluginMessage: { type: "create-annotation", annotationData } },
+      "*"
+    );
+    reset();
+  };
+
   return (
     <div className="">
       <div className="border-b-2 ">
@@ -30,9 +39,7 @@ export function AnnotationArea() {
         <div className="text-right">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10"
-            onClick={() => {
-              reset();
-            }}
+            onClick={clickHandler}
           >
             Create
           </button>
