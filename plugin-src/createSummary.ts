@@ -144,9 +144,12 @@ function createDate({
   y: number;
   date?: Date;
 }) {
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
   const dateNode = figma.createText();
   dateNode.fontName = { family: "Inter", style: "Bold" };
-  dateNode.characters = `${date.getFullYear() % 100}.${date.getMonth() + 1}.${date.getDate()}`;
+  dateNode.characters = `${date.getFullYear() % 100}.${month}.${day}`;
   dateNode.fontSize = 19;
   dateNode.fills = [{ type: "SOLID", color: rgb(198, 198, 212) }];
   dateNode.x = x;
