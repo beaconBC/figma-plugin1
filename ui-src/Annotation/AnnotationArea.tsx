@@ -1,15 +1,27 @@
 import { useContext } from "react";
 import { Annotation, AnnotationContext } from "./Annotation";
 import { OneTab } from "./OneTabProps";
-import { AnnotationType } from "./Annotation.type";
+import { AnnotationType, getAnnotationDefaultTexts } from "./Annotation.type";
 
 export function AnnotationArea() {
   const { state, setState, reset } = useContext(AnnotationContext);
 
   const clickHandler = () => {
     const annotationData = state;
+
+    const defaultTexts = getAnnotationDefaultTexts(state.type);
+
     parent.postMessage(
-      { pluginMessage: { type: "create-annotation", annotationData } },
+      {
+        pluginMessage: {
+          type: "create-annotation",
+          annotationData: {
+            type: annotationData.type,
+            title: annotationData.title || defaultTexts.title,
+            description: annotationData.description || defaultTexts.description,
+          },
+        },
+      },
       "*"
     );
     reset();

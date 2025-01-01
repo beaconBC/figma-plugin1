@@ -11,18 +11,6 @@ enum HangoverType {
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onCreate = () => {
-    const count = Number(inputRef.current?.value || 0);
-    parent.postMessage(
-      { pluginMessage: { type: "create-rectangles", count } },
-      "*"
-    );
-  };
-
-  const onCancel = () => {
-    parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
-  };
-
   const [selectValue, setSelectValue] = useState(HangoverType.ANNOTATION);
 
   return (

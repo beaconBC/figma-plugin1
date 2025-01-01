@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AnnotationContext } from "./Annotation";
 import { InnerInputArea } from "./InnerInputArea";
+import { AnnotationDefaultTexts, AnnotationType } from "./Annotation.type";
 
-const TITLE = "Do this thing.";
-const DESCRIPTION = "Details of what to do.";
+const { title: TITLE, description: DESCRIPTION } =
+  AnnotationDefaultTexts[AnnotationType.DO];
 
 export function DoAnnotation() {
   const { state, setState } = useContext(AnnotationContext);

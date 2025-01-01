@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AnnotationContext } from "./Annotation";
 import { InnerInputArea } from "./InnerInputArea";
+import { AnnotationDefaultTexts, AnnotationType } from "./Annotation.type";
 
-const TITLE = "Don’t do that.";
-const DESCRIPTION = "Details of what not to do.";
+const { title: TITLE, description: DESCRIPTION } =
+  AnnotationDefaultTexts[AnnotationType.DONT];
 
 export function DontAnnotation() {
   const { state, setState } = useContext(AnnotationContext);
