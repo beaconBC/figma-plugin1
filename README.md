@@ -9,6 +9,10 @@
 
 ## Introduction
 
+https://github.com/user-attachments/assets/1c5dcbb4-98dd-4aa0-aaf6-3a4901285b95
+
+https://github.com/user-attachments/assets/a8d37941-ab04-49b5-b7d2-6bab96144541
+
 Figma My Custom Plugin is a Figma plugin that allows users to create custom shapes and summaries directly within Figma. This plugin is designed to enhance your design workflow by providing easy-to-use tools for creating rectangles and summary boxes.
 
 ## Features
