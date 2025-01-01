@@ -1,14 +1,13 @@
 import { useContext } from "react";
-import { AnnotationContext } from "./Annotation";
+import { Annotation, AnnotationContext } from "./Annotation";
 import { OneTab } from "./OneTabProps";
 import { AnnotationType } from "./Annotation.type";
-import { DoAnnotation } from "./DoAnnotation";
 
 export function AnnotationArea() {
-  const { state, setState } = useContext(AnnotationContext);
+  const { state, setState, reset } = useContext(AnnotationContext);
 
   return (
-    <div>
+    <div className="">
       <div className="border-b-2 ">
         <ul className="flex  -mb-[2px]">
           {Object.values(AnnotationType).map((oneType) => (
@@ -22,8 +21,23 @@ export function AnnotationArea() {
           ))}
         </ul>
       </div>
-      <div className="mt-10">
-        {state.type === AnnotationType.DO && <DoAnnotation />}
+      <div className="flex flex-col h-max">
+        <div className="mt-10 flex-grow">
+          {state.type === AnnotationType.DO && <Annotation.Do />}
+          {state.type === AnnotationType.DONT && <Annotation.Dont />}
+          {state.type === AnnotationType.HESITATE && <Annotation.Hesitate />}
+        </div>
+        <div>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10"
+            onClick={() => {
+              console.log(state);
+              reset();
+            }}
+          >
+            Create
+          </button>
+        </div>
       </div>
     </div>
   );
