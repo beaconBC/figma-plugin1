@@ -26,7 +26,7 @@ function App() {
   const [selectValue, setSelectValue] = useState(HangoverType.ANNOTATION);
 
   return (
-    <main className="p-3">
+    <main className="p-3 h-full flex flex-col">
       <header className="flex justify-between">
         <h2 className="text-4xl text-black">Hand Off</h2>
         <div className="p-2 outline flex w-fit rounded-md">
@@ -44,7 +44,7 @@ function App() {
           </select>
         </div>
       </header>
-      <div className="mt-5">
+      <div className="mt-5 flex-grow">
         {selectValue === HangoverType.Summary && (
           <Summary>
             <div className="flex justify-between">
@@ -58,7 +58,7 @@ function App() {
         )}
         {selectValue === HangoverType.ANNOTATION && (
           <Annotation>
-            <AnnotationArea />
+            <Annotation.Area />
           </Annotation>
         )}
       </div>

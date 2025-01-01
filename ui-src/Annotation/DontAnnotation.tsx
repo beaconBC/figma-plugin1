@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { AnnotationContext } from "./Annotation";
 import { InnerInputArea } from "./InnerInputArea";
 
-const TITLE = "Do this thing.";
-const DESCRIPTION = "Details of what to do.";
+const TITLE = "Don’t do that.";
+const DESCRIPTION = "Details of what not to do.";
 
-export function DoAnnotation() {
+export function DontAnnotation() {
   const { state, setState } = useContext(AnnotationContext);
 
   return (
     <div className="shadow-md">
-      <div className="h-2 bg-[#00D870]"></div>
+      <div className="h-2 bg-[#FF3737]"></div>
       <div className="p-4 flex flex-col gap-2">
         <InnerInputArea
           className="font-bold tracking-tight text-xl outline-1 outline-blue-200 p-px"

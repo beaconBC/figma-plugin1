@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { AnnotationContext } from "./Annotation";
 import { InnerInputArea } from "./InnerInputArea";
 
+const TITLE = "Hesitate about this.";
+const DESCRIPTION = "Think about this thing.";
+
 export function HesitateAnnotation() {
+  const { state, setState } = useContext(AnnotationContext);
+
   return (
     <div className="shadow-md">
       <div className="h-2 bg-[#F8CF3E]"></div>
@@ -8,12 +15,18 @@ export function HesitateAnnotation() {
         <InnerInputArea
           className="font-bold tracking-tight text-xl outline-1 outline-blue-200 p-px"
           name="title"
-          defaultValue="Hesitate about this."
+          defaultValue={state.title || TITLE}
+          onBlur={(title) => {
+            setState({ ...state, title });
+          }}
         />
         <InnerInputArea
           className="tracking-tight text-sm text-[#49495A] outline-1 outline-blue-200 p-px"
           name="description"
-          defaultValue="Think about this thing."
+          defaultValue={state.description || DESCRIPTION}
+          onBlur={(description) => {
+            setState({ ...state, description });
+          }}
         />
       </div>
     </div>

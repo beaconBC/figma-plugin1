@@ -1,24 +1,29 @@
 import { useState } from "react";
-import { cn } from "../util";
+import { cn, convertNewLine } from "../util";
 
 interface InnerInputAreaProps {
   name?: string;
   defaultValue?: string;
   className?: string;
+  onBlur?: (value: string) => void;
 }
 export function InnerInputArea({
   name,
   defaultValue,
   className,
+  onBlur,
 }: InnerInputAreaProps) {
   const [inputText, setInputText] = useState(defaultValue || "");
   return (
     <div>
       <div
-        className={cn(className)}
+        className={cn("whitespace-pre-wrap", className)}
         contentEditable
         onInput={(e) => {
-          setInputText(e.currentTarget.innerText);
+          setInputText(convertNewLine(e.currentTarget.innerHTML));
+        }}
+        onBlur={() => {
+          onBlur?.(inputText);
         }}
       >
         {defaultValue}

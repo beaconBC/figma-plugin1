@@ -14,5 +14,6 @@ export type AnnotationData = typeof initAnnotationData;
 
 export interface AnnotationContextProps {
   state: AnnotationData;
+  reset: () => void;
   setState: React.Dispatch<React.SetStateAction<AnnotationData>>;
 }
