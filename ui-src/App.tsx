@@ -17,7 +17,7 @@ function App() {
     <main className="p-3 h-full flex flex-col">
       <header className="flex justify-between">
         <h2 className="text-4xl text-black">Hand Off</h2>
-        <div className="p-2 outline flex w-fit rounded-md">
+        <div className="p-2 outline outline-1 outline-slate-400 flex w-fit rounded-md">
           <select
             defaultValue={selectValue}
             className="outline-none pr-2"
