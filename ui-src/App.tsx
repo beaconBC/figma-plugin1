@@ -1,8 +1,11 @@
 import { useRef, useState } from "react";
 import { Summary } from "./Summary/Summary";
+import { Annotation } from "./Annotation/Annotation";
+import { AnnotationArea } from "./Annotation/AnnotationArea";
 
 enum HangoverType {
   Summary = "Summary",
+  ANNOTATION = "Annotation",
 }
 
 function App() {
@@ -20,19 +23,24 @@ function App() {
     parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
   };
 
-  const [selectValue, setSelectValue] = useState(HangoverType.Summary);
+  const [selectValue, setSelectValue] = useState(HangoverType.ANNOTATION);
 
   return (
     <main className="p-3">
       <header className="flex justify-between">
-        <h2 className="text-4xl text-black">Hangover</h2>
+        <h2 className="text-4xl text-black">Hand Off</h2>
         <div className="p-2 outline flex w-fit rounded-md">
           <select
+            defaultValue={selectValue}
             className="outline-none pr-2"
             id="pet-select"
             onChange={(e) => setSelectValue(e.target.value as HangoverType)}
           >
-            <option value={HangoverType.Summary}>{HangoverType.Summary}</option>
+            {Object.values(HangoverType).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
           </select>
         </div>
       </header>
@@ -47,6 +55,11 @@ function App() {
               <Summary.SummaryArea />
             </div>
           </Summary>
+        )}
+        {selectValue === HangoverType.ANNOTATION && (
+          <Annotation>
+            <AnnotationArea />
+          </Annotation>
         )}
       </div>
     </main>
