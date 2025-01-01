@@ -80,9 +80,7 @@ export async function createAnnotation(annotationData: AnnotationData) {
   box.resize(SUMMARY_BOX_WIDTH, newBoxHeight);
 
   const group = figma.group(nodes, figma.currentPage);
-  group.name = `Summary Group`;
-
-  figma.currentPage.selection = nodes;
+  group.name = `Annotation Group`;
 }
 
 function createDivider({ x, y, color }: { x: number; y: number; color: RGB }) {

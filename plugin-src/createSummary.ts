@@ -97,8 +97,6 @@ export async function createSummary(summaryData: SummaryRequestData) {
 
   const group = figma.group(nodes, figma.currentPage);
   group.name = `Summary Group`;
-
-  figma.currentPage.selection = nodes;
 }
 
 function createBox() {
